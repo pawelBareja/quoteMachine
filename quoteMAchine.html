@@ -1,69 +1,74 @@
-<style>
-body{
-background-color:#444;
-}
-#title {
-	text-align:center;
-	display:block;
-	width:100%;
-	color:#fff;
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<style>
+	body{
+	background-color:#444;
+	}
 	
-}
+	#title {
+		text-align:center;
+		display:block;
+		width:100%;
+		color:#fff;
+	}
 
-#quote-machine {
-	display:block;
-	max-width:60%;
-	margin: 0 auto;
-	border-radius:5px;
-	background-color:#fff;
-	padding:20px;
-}
+	#quote-machine {
+		display:block;
+		max-width:60%;
+		margin: 0 auto;
+		border-radius:5px;
+		background-color:#fff;
+		padding:20px;
+	}
 
-#button {
-	width:100px;
-	height:30px;
-	padding:10px;
-	text-align:center;
-	cursor:pointer;
-	font-size:20px;
-	line-height:30px;
-	color:#fff;
-	margin:20px;
-}
+	#button {
+		width:100px;
+		height:30px;
+		padding:10px;
+		text-align:center;
+		cursor:pointer;
+		font-size:20px;
+		line-height:30px;
+		color:#fff;
+		margin:20px;
+	}
 
-.quote {
-	display:none;
-	color:#fff;
-	text-align:justify;
-}
+	.quote {
+		display:none;
+		color:#fff;
+		text-align:justify;
+	}
 
-#display {
-    font-size: 24px;
-	display:block;
-	min-height:100px;
-	padding-top:10px;
-}
+	#display {
+		font-size: 24px;
+		display:block;
+		min-height:100px;
+		padding-top:10px;
+	}
 
+	#footer{
+	 color:#fff;
+	 display:block;
+	 margin: 20px;
+	 text-align:center;
+	}
 
-#footer{
- position:absolute;
- bottom:-50px;
- left:50%
- color:#fff;;
-}
+	#marker {
+		color:#fff;
+		font-size:50px;
+		float: left;
+		padding:5px;
+		padding-top:0;
+	}
 
-#marker {
-	color:#fff;
-	font-size:50px;
-    float: left;
-	padding:5px;
-    padding-top:0;
-}
+	#author {float:right;}
+	</style>
+</head>
 
-#author {float:right;}
+<body>
 
-
-</style>
 <div id ="title"><h1>The most memorable quotes - in polish:)</h1></div>
 
 <div id="quote-machine">
@@ -171,7 +176,11 @@ background-color:#444;
 
 		 
 <script>
-window.onload = function(){
+window.onload = show();
+
+
+function show(){
+
 	var quote = document.getElementsByClassName('quote');
 	var bodyColor = document.querySelector('body');
 	var display = document.getElementById('display');
@@ -179,14 +188,16 @@ window.onload = function(){
 	var marker = document.getElementById('marker');
 	var random = Math.floor((Math.random() * 29) +1 );
 	var btn = document.getElementById('button');
-	
-	marker.innerHTML = '"';
-
 	var text = quote[random].innerHTML;
 
-	randomColor = Math.floor((Math.random() * 250) + 1);
-	randomColor2 = Math.floor((Math.random() * 250) + 1);
-	randomColor3 = Math.floor((Math.random() * 250) + 1);
+	marker.innerHTML = '"';
+	display.innerHTML = text.substring(0,text.indexOf("-"));
+	author.innerHTML = quote[random].querySelector('span').innerHTML;
+	
+/*color manipulation*/
+	var randomColor = Math.floor((Math.random() * 250) + 1);
+	var randomColor2 = Math.floor((Math.random() * 250) + 1);
+	var randomColor3 = Math.floor((Math.random() * 250) + 1);
 	var inputColor = "rgba(" + randomColor + "," + randomColor2 + "," + randomColor3 + "," + 1 + ")";
 
 	bodyColor.style.backgroundColor =inputColor;
@@ -195,51 +206,14 @@ window.onload = function(){
 	author.style.color =inputColor;
 	marker.style.color =inputColor;
 	
-
-	display.innerHTML = text.substring(0,text.indexOf("-"));
-	author.innerHTML = quote[random].querySelector('span').innerHTML;
-
-
-var quote = document.getElementsByClassName('quote');
-
-var btn = document.getElementById('button');
-btn.addEventListener('click', function(e){
-	 
-	 e.preventDefault;
-	 
-	var bodyColor = document.querySelector('body');
-	var display = document.getElementById('display');
-	var author = document.getElementById('author');
-	var marker = document.getElementById('marker');
-	var random = Math.floor((Math.random() * 29) +1 );
-	
-	marker.innerHTML = '"';
-
-	var text = quote[random].innerHTML;
-
-	randomColor = Math.floor((Math.random() * 250) + 1);
-	randomColor2 = Math.floor((Math.random() * 250) + 1);
-	randomColor3 = Math.floor((Math.random() * 250) + 1);
-	var inputColor = "rgba(" + randomColor + "," + randomColor2 + "," + randomColor3 + "," + 1 + ")";
-
-	bodyColor.style.backgroundColor =inputColor;
-	btn.style.backgroundColor =inputColor;
-	display.style.color =inputColor;
-	author.style.color =inputColor;
-	marker.style.color =inputColor;
-	
-	
-	display.innerHTML = text.substring(0,text.indexOf("-"));
-	author.innerHTML = quote[random].querySelector('span').innerHTML;
-	
-
-	
-	},false);
-	
-
+	/*button*/
+	btn.addEventListener('click', show);
 };
 
+
 </script>
+</body>
+</html>
 
 
 
