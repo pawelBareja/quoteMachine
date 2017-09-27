@@ -16,6 +16,7 @@
 
 	#quote-machine {
 		display:flex;
+		flex-wrap:wrap;
 		flex-direction:column;
 		max-width:60%;
 		margin: 0 auto;
@@ -41,19 +42,19 @@
 		font-size:20px;
 		line-height:30px;
 		color:#fff;
-		margin:20px;
+		margin:5px;
 	}
 
 	.quote {
 		display:none;
 		color:#fff;
-		text-align:justify;
 	}
 
 	#display {
 		font-size: 24px;
 		min-height:100px;
 		padding-top:10px;
+		text-align:center;
 	}
 
 	#footer{
@@ -63,12 +64,10 @@
 	 text-align:center;
 	}
 
-	#marker {
-
-	}
+	#marker {}
 
 	#author {
-		margin:5px 20px 20px 20px;
+		margin:5px;
 		padding:10px;
 	}
 	</style>
@@ -192,13 +191,12 @@ function show(){
 	var bodyColor = document.querySelector('body');
 	var display = document.getElementById('display');
 	var author = document.getElementById('author');
-	var marker = document.getElementById('marker');
 	var random = Math.floor((Math.random() * 29) +1 );
 	var btn = document.getElementById('button');
 	var text = quote[random].innerHTML;
 
-	marker.innerHTML = '"';
-	display.innerHTML = text.substring(0,text.indexOf("-"));
+	var prefix = '<span style = "font-size:40px";>"</span>';
+	display.innerHTML = prefix + text.substring(0,text.indexOf("-"));
 	author.innerHTML = quote[random].querySelector('span').innerHTML;
 	
 /*color manipulation*/
